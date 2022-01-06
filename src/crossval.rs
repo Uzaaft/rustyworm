@@ -28,10 +28,18 @@ fn combinations<T>(seq: &[T], mut r: Option<size>) {
 Leave-One-Out cross validation iterator:
 Provides train/test indexes to split data in train test sets
 */
+#[derive(Debug)]
 #[pyclass]
 struct LeaveOneOut {
     #[pyo3(get, set)]
     value: i32,
+}
+
+
+impl std::fmt::Display for MyStruct {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "LeaveOneOut( n={} )", self.n) // Should perhaps rewrite this to more like the python code.
+    }
 }
 
 #[pymethods]
@@ -40,4 +48,7 @@ impl LeaveOneOut {
     pub fn new(value: i32) -> Self {
         LeaveOneOut { value }
     }
+
+
+
 }
