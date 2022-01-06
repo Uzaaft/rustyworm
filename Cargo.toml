@@ -9,4 +9,5 @@ name = "maturin_starter"
 crate-type = ["cdylib"]
 
 [dependencies]
+ndarray = "0.15.4"
 pyo3 = { version = "0.15.1", features = ["extension-module"] }

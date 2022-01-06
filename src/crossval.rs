@@ -1,7 +1,7 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 use pyo3::wrap_pymodule;
-
+use ndarray;
 mod submodule;
 use submodule::*;
 
@@ -48,7 +48,19 @@ impl LeaveOneOut {
     pub fn new(value: i32) -> Self {
         LeaveOneOut { value }
     }
+}
 
 
-
+impl std::iter::Iterator for LeaveOneOut {
+    type Item = (usize, usize);
+    fn next(&mut self) -> Option<Self::Item> {
+        for i in 0..self.n {
+            test_index = ndarray::ArrayBase::zeros(self.n)
+            test_index = test_index.mapv(|x| x == 1); ¨
+            // ^Less than ideal. Perhaps we can just use 0 and 1 instead of bools
+            test_index[i] = true;
+            train_index = ndarray::ArrayBase::zeros(self.n)
+            train_index = train_index.mapv(|x| x == test_index);
+            yield (train_index, test_index);
+            }
 }
